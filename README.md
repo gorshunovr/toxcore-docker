@@ -10,7 +10,8 @@ Image is based on latest [Debian Docker](https://hub.docker.com/_/debian/) image
 
 Launch image and check logs:
 
-    docker run -d --name toxcore_bootstrapd account/toxcore
+    docker pull romang/toxcore-docker
+    docker run -d --name toxcore_bootstrapd romang/toxcore-docker
     docker logs toxcore_bootstrapd
 
 Launch image and drop to Bash shell:
