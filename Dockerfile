@@ -17,7 +17,7 @@ RUN export BUILD_PACKAGES="automake \
 		libsodium-dev \
 		unzip \
 		yasm" && \
-	export RUNTIME_PACKAGES="libsodium13 \
+	export RUNTIME_PACKAGES="libsodium18 \
 		libconfig-dev" && \
 	apt-get update && apt-get install -y $BUILD_PACKAGES $RUNTIME_PACKAGES && \
 	unzip -tq master.zip && \
@@ -46,8 +46,8 @@ RUN export BUILD_PACKAGES="automake \
 	sed -i '/^bootstrap_nodes = /,$d' /etc/tox-bootstrapd.conf && \
 	cat /tmp/tox/bootstrapd-conf-ipv64.txt >> /etc/tox-bootstrapd.conf && \
 	cd / && \
-	export AUTO_ADDED_PACKAGES="$(apt-mark showauto)" && \
-	apt-get remove --purge -y $BUILD_PACKAGES $AUTO_ADDED_PACKAGES && \
+	apt-get remove --purge -y $BUILD_PACKAGES && \
+	apt autoremove -y && \
 	apt-get install -y $RUNTIME_PACKAGES && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* && \
